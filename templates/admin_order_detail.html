@@ -1,0 +1,48 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Order #{{ order['id'] }} | Tyana Jewels{% endblock %}
+
+{% block content %}
+<section class="admin-page">
+    {% set title = "Order Detail" %}
+    {% include "_admin_nav.html" %}
+    <div class="admin-detail-grid">
+        <article class="admin-panel">
+            <div class="admin-panel__header">
+                <h3>Order #{{ order['id'] }}</h3>
+                <span>{{ order['created_at'] }}</span>
+            </div>
+            <div class="admin-order-meta">
+                <p><strong>Customer:</strong> {{ order['customer_name'] }}</p>
+                <p><strong>Email:</strong> {{ order['email'] }}</p>
+                <p><strong>Phone:</strong> {{ order['phone'] }}</p>
+                <p><strong>Address:</strong> {{ order['address'] }}, {{ order['city'] }} - {{ order['pin_code'] }}</p>
+                <p><strong>Payment:</strong> {{ order['payment_method'] }}</p>
+                <p><strong>Subtotal:</strong> {{ money(order['subtotal']) }}</p>
+                <p><strong>Shipping:</strong> {{ money(order['shipping_cost']) }}</p>
+                <p><strong>Total:</strong> {{ money(order['total']) }}</p>
+            </div>
+        </article>
+        <article class="admin-panel">
+            <div class="admin-panel__header">
+                <h3>Items</h3>
+                <span>{{ items|length }} items</span>
+            </div>
+            <div class="admin-line-items">
+                {% for item in items %}
+                    <div class="admin-line-item">
+                        <div>
+                            <strong>{{ item['name'] }}</strong>
+                            <p>SKU: {{ item['slug'] }}</p>
+                        </div>
+                        <div>
+                            <p>Qty: {{ item['quantity'] }}</p>
+                            <strong>{{ money(item['line_total']) }}</strong>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </article>
+    </div>
+</section>
+{% endblock %}

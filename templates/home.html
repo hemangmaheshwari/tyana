@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% block title %}Tyana Jewels | Anti-Tarnish Jewellery{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-copy">
+        <p class="eyebrow">Budget-friendly. Elevated. Made to glow.</p>
+        <h1>Anti-tarnish jewellery that makes every outfit feel finished.</h1>
+        <p class="hero-text">
+            Tyana Jewels brings together modern silhouettes, gift-ready packaging, and a premium finish that still feels within reach.
+        </p>
+        <div class="hero-actions">
+            <a href="{{ url_for('shop', badge='Best Sellers') }}" class="button button-primary">Shop Best Sellers</a>
+            <a href="{{ url_for('shop', badge='New Arrivals') }}" class="button button-secondary">See New Arrivals</a>
+        </div>
+        <div class="trust-row">
+            <span>Anti-tarnish finish</span>
+            <span>Skin-friendly materials</span>
+            <span>Fast shipping across India</span>
+        </div>
+    </div>
+    <div class="hero-card">
+        <img src="{{ url_for('static', filename='images/editorial-hero.svg') }}" alt="Tyana Jewels editorial jewellery collage" class="hero-card__image">
+        <div class="hero-card__content">
+            <p class="hero-card__label">Tyana Signature Edit</p>
+            <h2>Looks luxe. Wears easy.</h2>
+            <p>Everyday statement pieces curated for college fits, brunch plans, gifting, and night-outs.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-heading">
+        <p class="eyebrow">Best Sellers</p>
+        <h2>Customer-loved glow pieces</h2>
+    </div>
+    <div class="product-grid">
+        {% for product in best_sellers %}
+            {% include "_product_card.html" %}
+        {% endfor %}
+    </div>
+</section>
+
+<section class="category-band">
+    <div class="section-heading">
+        <p class="eyebrow">Shop By Category</p>
+        <h2>Start with your signature style</h2>
+    </div>
+    <div class="category-grid">
+        <a href="{{ url_for('shop', category='Rings') }}" class="category-card">
+            <span>Rings</span>
+            <strong>Stackable shine</strong>
+        </a>
+        <a href="{{ url_for('shop', category='Earrings') }}" class="category-card">
+            <span>Earrings</span>
+            <strong>Everyday sparkle</strong>
+        </a>
+        <a href="{{ url_for('shop', category='Necklaces') }}" class="category-card">
+            <span>Necklaces</span>
+            <strong>Layer-ready glow</strong>
+        </a>
+        <a href="{{ url_for('shop', category='Bracelets') }}" class="category-card">
+            <span>Bracelets</span>
+            <strong>Minimal polish</strong>
+        </a>
+    </div>
+</section>
+
+<section class="section split-section">
+    <div class="feature-panel">
+        <p class="eyebrow">Why Tyana</p>
+        <h2>Made for real wear, not just special occasions.</h2>
+        <ul class="feature-list">
+            <li>Anti-tarnish pieces made to keep their glow through repeat styling.</li>
+            <li>Lightweight silhouettes that feel effortless from day to night.</li>
+            <li>Premium visual language without intimidating luxury pricing.</li>
+            <li>Gift-ready delivery with clean, modern packaging.</li>
+        </ul>
+    </div>
+    <div class="highlight-panel">
+        <p class="eyebrow">Fast-moving favourites</p>
+        <div class="mini-product-list">
+            {% for product in new_arrivals %}
+                <a href="{{ url_for('product_detail', slug=product.slug) }}" class="mini-product">
+                    <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}" class="mini-product__image">
+                    <span>
+                        <strong>{{ product.name }}</strong>
+                        <small>{{ money(product.sale_price) }}</small>
+                    </span>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-heading">
+        <p class="eyebrow">Reviews & UGC</p>
+        <h2>Styled by women who love a little glow</h2>
+    </div>
+    <div class="review-grid">
+        {% for review in reviews %}
+            <article class="review-card">
+                <p>"{{ review.quote }}"</p>
+                <strong>{{ review.name }}</strong>
+                <span>{{ review.handle }}</span>
+            </article>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="section faq-band">
+    <div class="section-heading">
+        <p class="eyebrow">Need-to-Know</p>
+        <h2>Shipping, care, and first-order confidence</h2>
+    </div>
+    <div class="faq-grid">
+        <article>
+            <h3>How fast is shipping?</h3>
+            <p>Most orders dispatch within 24 to 48 hours with PAN India tracking updates.</p>
+        </article>
+        <article>
+            <h3>Will it tarnish?</h3>
+            <p>Tyana pieces are designed with anti-tarnish materials and care guidance for long-lasting shine.</p>
+        </article>
+        <article>
+            <h3>Can I gift it?</h3>
+            <p>Yes. Every order is packed to feel polished, elevated, and gifting-friendly from the start.</p>
+        </article>
+    </div>
+</section>
+
+<section class="newsletter-panel">
+    <div>
+        <p class="eyebrow">Stay In The Glow Loop</p>
+        <h2>Get first access to drops, restocks, and styling edits.</h2>
+    </div>
+    <form class="newsletter-form">
+        <input type="email" placeholder="Enter your email">
+        <button type="button" class="button button-primary">Join Now</button>
+    </form>
+</section>
+{% endblock %}

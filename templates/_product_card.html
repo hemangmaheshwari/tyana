@@ -1,0 +1,21 @@
+<article class="product-card">
+    <a href="{{ url_for('product_detail', slug=product.slug) }}" class="product-card__image">
+        <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}" class="product-card__img">
+    </a>
+    <div class="product-card__body">
+        <div class="product-card__badges">
+            {% for badge in product.badges[:2] %}
+                <span>{{ badge }}</span>
+            {% endfor %}
+        </div>
+        <a href="{{ url_for('product_detail', slug=product.slug) }}" class="product-card__title">{{ product.name }}</a>
+        <p>{{ product.short_description }}</p>
+        <div class="price-row">
+            <strong>{{ money(product.sale_price) }}</strong>
+            <span>{{ money(product.price) }}</span>
+        </div>
+        <form action="{{ url_for('add_to_cart', slug=product.slug) }}" method="post">
+            <button class="button button-primary button-block" type="submit">Add to Cart</button>
+        </form>
+    </div>
+</article>

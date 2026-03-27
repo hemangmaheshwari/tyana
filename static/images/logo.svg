@@ -1,0 +1,34 @@
+<svg width="900" height="320" viewBox="0 0 900 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="900" height="320" rx="34" fill="#050403"/>
+<g opacity="0.95">
+<path d="M56 126C95 57 169 37 286 46C349 51 411 72 511 75C579 78 671 56 761 67" stroke="url(#goldStroke)" stroke-width="6" stroke-linecap="round"/>
+<path d="M187 248C321 212 476 210 670 228C742 235 799 248 854 271" stroke="url(#goldStroke)" stroke-width="6" stroke-linecap="round"/>
+</g>
+<text x="82" y="184" fill="url(#goldText)" font-family="Georgia, Times New Roman, serif" font-size="154" font-style="italic">Tyana</text>
+<text x="296" y="255" fill="#F1DBAA" font-family="Georgia, Times New Roman, serif" font-size="33" font-weight="700" letter-spacing="5">WHERE GRACE MEETS GLOW</text>
+<g transform="translate(723 44)">
+<path d="M47 7L79 31L70 78L47 101L24 78L15 31L47 7Z" fill="#F8F5FF" stroke="#F1DDAF" stroke-width="3"/>
+<path d="M47 7L47 101M15 31H79M24 78L70 78" stroke="#C8D7FF" stroke-width="2" opacity="0.7"/>
+<circle cx="47" cy="47" r="58" fill="url(#sparkGlow)" opacity="0.26"/>
+</g>
+<g fill="#F3D183">
+<circle cx="92" cy="250" r="5"/><circle cx="111" cy="236" r="3"/><circle cx="126" cy="258" r="4"/>
+<circle cx="822" cy="125" r="5"/><circle cx="846" cy="107" r="3"/><circle cx="860" cy="138" r="4"/>
+</g>
+<defs>
+<linearGradient id="goldText" x1="80" y1="48" x2="636" y2="234" gradientUnits="userSpaceOnUse">
+<stop stop-color="#F6E4B5"/>
+<stop offset="0.45" stop-color="#D7AA63"/>
+<stop offset="1" stop-color="#B47B2D"/>
+</linearGradient>
+<linearGradient id="goldStroke" x1="56" y1="45" x2="856" y2="271" gradientUnits="userSpaceOnUse">
+<stop stop-color="#C88C3F"/>
+<stop offset="0.5" stop-color="#F2D9A0"/>
+<stop offset="1" stop-color="#A56A22"/>
+</linearGradient>
+<radialGradient id="sparkGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(47 47) rotate(90) scale(58)">
+<stop stop-color="#FFF3C5"/>
+<stop offset="1" stop-color="#FFF3C5" stop-opacity="0"/>
+</radialGradient>
+</defs>
+</svg>

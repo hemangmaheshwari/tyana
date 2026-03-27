@@ -1,0 +1,15 @@
+﻿<div class="admin-toolbar">
+    <div>
+        <p class="eyebrow">Tyana Admin</p>
+        <h2>{{ title }}</h2>
+    </div>
+    <div class="admin-toolbar__actions">
+        <a href="{{ url_for('admin_dashboard') }}" class="button button-secondary">Dashboard</a>
+        <a href="{{ url_for('admin_orders') }}" class="button button-secondary">Orders</a>
+        <a href="{{ url_for('admin_customers') }}" class="button button-secondary">Customers</a>
+        <a href="{{ url_for('admin_products') }}" class="button button-secondary">Products</a>
+        <form action="{{ url_for('admin_logout') }}" method="post">
+            <button class="button button-primary" type="submit">Logout</button>
+        </form>
+    </div>
+</div>

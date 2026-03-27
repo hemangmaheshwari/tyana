@@ -1,0 +1,85 @@
+﻿{% extends "base.html" %}
+
+{% block title %}{{ product.name }} | Tyana Jewels{% endblock %}
+
+{% block content %}
+<section class="product-layout">
+    <div class="product-gallery">
+        <div class="product-gallery__main">
+            <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}" class="product-gallery__img">
+        </div>
+        <div class="product-gallery__thumbs">
+            <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }} thumbnail" class="product-gallery__thumb">
+            <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }} detail" class="product-gallery__thumb">
+            <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }} alternate angle" class="product-gallery__thumb">
+        </div>
+    </div>
+
+    <div class="product-info">
+        <div class="product-meta">
+            {% for badge in product.badges %}
+                <span>{{ badge }}</span>
+            {% endfor %}
+        </div>
+        <h1>{{ product.name }}</h1>
+        <p class="product-rating">{{ product.rating }} / 5 rating &middot; {{ product.reviews }} reviews</p>
+        <div class="price-row price-row-large">
+            <strong>{{ money(product.sale_price) }}</strong>
+            <span>{{ money(product.price) }}</span>
+            <small>{{ product.stock }}</small>
+        </div>
+        <p class="product-description">{{ product.short_description }}</p>
+        <p>{{ product.details }}</p>
+
+        <div class="variant-list">
+            {% for variant_name, values in product.variants.items() %}
+                <div>
+                    <h3>{{ variant_name }}</h3>
+                    <div class="variant-chips">
+                        {% for value in values %}
+                            <span>{{ value }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="stack">
+            <form action="{{ url_for('add_to_cart', slug=product.slug) }}" method="post">
+                <button class="button button-primary button-block" type="submit">Add to Cart</button>
+            </form>
+            <form action="{{ url_for('buy_now', slug=product.slug) }}" method="post">
+                <button class="button button-secondary button-block" type="submit">Buy Now</button>
+            </form>
+        </div>
+
+        <div class="info-cards">
+            <article>
+                <h3>Material</h3>
+                <p>{{ product.material }}</p>
+            </article>
+            <article>
+                <h3>Care</h3>
+                <p>{{ product.care }}</p>
+            </article>
+            <article>
+                <h3>Shipping</h3>
+                <p>{{ product.shipping }}</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-heading">
+        <p class="eyebrow">You May Also Like</p>
+        <h2>More from the {{ product.category.lower() }} edit</h2>
+    </div>
+    <div class="product-grid">
+        {% for product in related %}
+            {% include "_product_card.html" %}
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+

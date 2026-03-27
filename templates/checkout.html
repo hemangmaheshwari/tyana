@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Checkout | Tyana Jewels{% endblock %}
+
+{% block content %}
+<section class="checkout-layout">
+    <div>
+        <div class="section-heading">
+            <p class="eyebrow">Checkout</p>
+            <h1>Secure your Tyana glow edit.</h1>
+        </div>
+        <form method="post" class="checkout-form">
+            <label>
+                Full Name
+                <input type="text" name="name" placeholder="Your name" required>
+            </label>
+            <label>
+                Email
+                <input type="email" name="email" placeholder="you@example.com" required>
+            </label>
+            <label>
+                Phone
+                <input type="tel" name="phone" placeholder="+91" required>
+            </label>
+            <label>
+                Address
+                <textarea name="address" placeholder="House number, street, landmark" required></textarea>
+            </label>
+            <div class="two-col">
+                <label>
+                    City
+                    <input type="text" name="city" placeholder="City" required>
+                </label>
+                <label>
+                    PIN Code
+                    <input type="text" name="pin" placeholder="PIN" required>
+                </label>
+            </div>
+            <label>
+                Payment Method
+                <select name="payment_method">
+                    <option>UPI</option>
+                    <option>Credit / Debit Card</option>
+                    <option>Cash on Delivery</option>
+                </select>
+            </label>
+            <button class="button button-primary button-block" type="submit">Place Order</button>
+        </form>
+    </div>
+
+    <aside class="cart-summary">
+        <h2>Order Review</h2>
+        {% for item in items %}
+            <div class="summary-row">
+                <span>{{ item.product.name }} x {{ item.quantity }}</span>
+                <strong>{{ money(item.line_total) }}</strong>
+            </div>
+        {% endfor %}
+        <div class="summary-row">
+            <span>Subtotal</span>
+            <strong>{{ money(subtotal) }}</strong>
+        </div>
+        <div class="summary-row">
+            <span>Shipping</span>
+            <strong>{{ money(shipping_cost) }}</strong>
+        </div>
+        <div class="summary-row total">
+            <span>Total</span>
+            <strong>{{ money(total) }}</strong>
+        </div>
+        <p class="summary-note">This starter checkout is demo-ready. Live payments can be connected later through Razorpay, Cashfree, or Stripe.</p>
+    </aside>
+</section>
+{% endblock %}

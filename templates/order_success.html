@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Order Confirmed | Tyana Jewels{% endblock %}
+
+{% block content %}
+<section class="success-panel">
+    <p class="eyebrow">Order Confirmed</p>
+    <h1>Thank you, {{ order.name }}.</h1>
+    <p>Your Tyana Jewels order #{{ order.id }} is confirmed for {{ order.city }}. Payment method: {{ order.payment_method }}.</p>
+    <p class="success-total">Order total: {{ money(order.total) }}</p>
+    <div class="hero-actions">
+        <a href="{{ url_for('shop') }}" class="button button-primary">Continue Shopping</a>
+        <a href="{{ url_for('contact') }}" class="button button-secondary">Need Help?</a>
+    </div>
+</section>
+{% endblock %}

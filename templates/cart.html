@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Cart | Tyana Jewels{% endblock %}
+
+{% block content %}
+<section class="inner-hero compact">
+    <p class="eyebrow">Your Cart</p>
+    <h1>Almost yours.</h1>
+    <p>Review your picks before checkout.</p>
+</section>
+
+<section class="cart-layout">
+    <div class="cart-items">
+        {% if items %}
+            {% for item in items %}
+                <article class="cart-item">
+                    <img src="{{ url_for('static', filename=item.product.image) }}" alt="{{ item.product.name }}" class="cart-item__image">
+                    <div>
+                        <h2>{{ item.product.name }}</h2>
+                        <p>{{ item.product.short_description }}</p>
+                        <span>{{ money(item.product.sale_price) }}</span>
+                    </div>
+                    <form action="{{ url_for('update_cart', slug=item.product.slug) }}" method="post" class="cart-item__form">
+                        <label>
+                            Qty
+                            <input type="number" min="0" max="10" name="quantity" value="{{ item.quantity }}">
+                        </label>
+                        <button type="submit" class="button button-secondary">Update</button>
+                    </form>
+                </article>
+            {% endfor %}
+        {% else %}
+            <div class="empty-panel">
+                <h2>Your cart is empty.</h2>
+                <p>Start with the bestselling Tyana glow pieces and build your signature stack.</p>
+                <a href="{{ url_for('shop') }}" class="button button-primary">Continue Shopping</a>
+            </div>
+        {% endif %}
+    </div>
+
+    <aside class="cart-summary">
+        <h2>Order Summary</h2>
+        <div class="summary-row">
+            <span>Subtotal</span>
+            <strong>{{ money(cart_subtotal_value) }}</strong>
+        </div>
+        <div class="summary-row">
+            <span>Shipping</span>
+            <strong>{{ money(shipping_cost) }}</strong>
+        </div>
+        <div class="summary-row total">
+            <span>Total</span>
+            <strong>{{ money(total) }}</strong>
+        </div>
+        <a href="{{ url_for('checkout') }}" class="button button-primary button-block">Proceed to Checkout</a>
+        <p class="summary-note">Guest checkout enabled. UPI, cards, and cash on delivery ready for integration.</p>
+    </aside>
+</section>
+{% endblock %}

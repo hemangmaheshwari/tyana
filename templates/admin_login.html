@@ -1,0 +1,28 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Owner Login | Tyana Jewels{% endblock %}
+
+{% block content %}
+<section class="admin-auth">
+    <div class="admin-auth__card">
+        <p class="eyebrow">Owner Access</p>
+        <h1>Sign in to Tyana Admin</h1>
+        <p>Use the owner credentials to view orders, customers, and product data.</p>
+        {% if error %}
+            <p class="form-error">{{ error }}</p>
+        {% endif %}
+        <form method="post" class="checkout-form">
+            <label>
+                Username
+                <input type="text" name="username" placeholder="Owner username" required>
+            </label>
+            <label>
+                Password
+                <input type="password" name="password" placeholder="Password" required>
+            </label>
+            <button class="button button-primary button-block" type="submit">Sign In</button>
+        </form>
+        <p class="summary-note">Default login: <strong>owner</strong> / <strong>tyana123</strong></p>
+    </div>
+</section>
+{% endblock %}

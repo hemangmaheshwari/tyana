@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Shop | Tyana Jewels{% endblock %}
+
+{% block content %}
+<section class="inner-hero">
+    <p class="eyebrow">Shop Tyana</p>
+    <h1>Modern jewellery for every day, every plan, every glow-up.</h1>
+    <p>Browse the signature edit across rings, earrings, necklaces, and bracelets.</p>
+</section>
+
+<section class="shop-layout">
+    <aside class="filters">
+        <h2>Filter</h2>
+        <form action="{{ url_for('shop') }}" method="get" class="filter-form">
+            <label>
+                Category
+                <select name="category">
+                    {% for category in categories %}
+                        <option value="{{ category }}" {% if category == selected_category %}selected{% endif %}>{{ category }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+            <label>
+                Finish
+                <select name="finish">
+                    {% for finish in finishes %}
+                        <option value="{{ finish }}" {% if finish == selected_finish %}selected{% endif %}>{{ finish }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+            <label>
+                Collection
+                <select name="badge">
+                    {% for badge in ["All", "Best Sellers", "New Arrivals"] %}
+                        <option value="{{ badge }}" {% if badge == selected_badge %}selected{% endif %}>{{ badge }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+            <button class="button button-primary button-block" type="submit">Apply Filters</button>
+        </form>
+    </aside>
+
+    <div class="shop-results">
+        <div class="results-bar">
+            <p>{{ products|length }} products</p>
+            <span>India-wide delivery | Free prepaid shipping over Rs. 1499</span>
+        </div>
+        <div class="product-grid">
+            {% for product in products %}
+                {% include "_product_card.html" %}
+            {% else %}
+                <p class="empty-state">No products match those filters yet. Try a different category or finish.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

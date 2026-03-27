@@ -1,0 +1,48 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Orders | Tyana Jewels{% endblock %}
+
+{% block content %}
+<section class="admin-page">
+    {% set title = "Orders" %}
+    {% include "_admin_nav.html" %}
+    <div class="admin-panel">
+        <div class="admin-panel__header">
+            <h3>All Orders</h3>
+            <span>{{ orders|length }} total</span>
+        </div>
+        {% if orders %}
+            <div class="admin-table-wrap">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Customer</th>
+                            <th>Contact</th>
+                            <th>City</th>
+                            <th>Payment</th>
+                            <th>Total</th>
+                            <th>Placed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                            <tr>
+                                <td><a href="{{ url_for('admin_order_detail', order_id=order['id']) }}">#{{ order['id'] }}</a></td>
+                                <td>{{ order['customer_name'] }}</td>
+                                <td>{{ order['email'] }}<br>{{ order['phone'] }}</td>
+                                <td>{{ order['city'] }}</td>
+                                <td>{{ order['payment_method'] }}</td>
+                                <td>{{ money(order['total']) }}</td>
+                                <td>{{ order['created_at'] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="empty-state">No orders found yet.</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

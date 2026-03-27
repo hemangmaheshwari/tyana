@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} | Tyana Jewels{% endblock %}
+
+{% block content %}
+<section class="policy-layout">
+    <div class="section-heading">
+        <p class="eyebrow">Tyana Policies</p>
+        <h1>{{ page.title }}</h1>
+    </div>
+    <p class="policy-intro">{{ page.intro }}</p>
+    <div class="policy-card">
+        {% for point in page.points %}
+            <p>{{ point }}</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

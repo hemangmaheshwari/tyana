@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ brand_name }}{% endblock %}</title>
+    <meta name="description" content="Tyana Jewels is a modern anti-tarnish jewellery brand made for glow-filled everyday styling.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <a href="{{ url_for('home') }}" class="brand-mark" aria-label="{{ brand_name }} home">
+                {% if logo_path %}
+                    <img src="{{ url_for('static', filename=logo_path) }}" alt="{{ brand_name }} logo" class="brand-image">
+                {% else %}
+                    <div class="brand-fallback">
+                        <span class="brand-fallback__name">Tyana</span>
+                        <span class="brand-fallback__tag">Where Grace Meets Glow</span>
+                    </div>
+                {% endif %}
+            </a>
+            <nav class="site-nav">
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('shop') }}">Shop</a>
+                <a href="{{ url_for('shop', badge='New Arrivals') }}">New Arrivals</a>
+                <a href="{{ url_for('shop', badge='Best Sellers') }}">Best Sellers</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('contact') }}">Contact</a>
+                {% if is_admin %}
+                    <a href="{{ url_for('admin_dashboard') }}">Owner Panel</a>
+                {% endif %}
+                <a href="{{ url_for('cart') }}" class="cart-pill">Cart <span>{{ cart_count }}</span></a>
+            </nav>
+        </header>
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer class="site-footer">
+            <div>
+                <h3>{{ brand_name }}</h3>
+                <p>Anti-tarnish jewellery for everyday glow, gifting moments, and effortless styling.</p>
+            </div>
+            <div>
+                <h4>Shop</h4>
+                <a href="{{ url_for('shop', category='Rings') }}">Rings</a>
+                <a href="{{ url_for('shop', category='Earrings') }}">Earrings</a>
+                <a href="{{ url_for('shop', category='Necklaces') }}">Necklaces</a>
+                <a href="{{ url_for('shop', category='Bracelets') }}">Bracelets</a>
+            </div>
+            <div>
+                <h4>Help</h4>
+                <a href="{{ url_for('policy_page', slug='shipping') }}">Shipping</a>
+                <a href="{{ url_for('policy_page', slug='returns') }}">Returns</a>
+                <a href="{{ url_for('policy_page', slug='faq') }}">FAQ</a>
+                <a href="{{ url_for('policy_page', slug='care') }}">Jewellery Care</a>
+            </div>
+            <div>
+                <h4>Policies</h4>
+                <a href="{{ url_for('policy_page', slug='privacy') }}">Privacy Policy</a>
+                <a href="{{ url_for('policy_page', slug='terms') }}">Terms &amp; Conditions</a>
+                <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a>
+                <a href="mailto:hello@tyanajewels.in">hello@tyanajewels.in</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Products | Tyana Jewels{% endblock %}
+
+{% block content %}
+<section class="admin-page">
+    {% set title = "Products" %}
+    {% include "_admin_nav.html" %}
+    <div class="admin-table-wrap admin-panel">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Finish</th>
+                    <th>Price</th>
+                    <th>Sale Price</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.category }}</td>
+                        <td>{{ product.finish }}</td>
+                        <td>{{ money(product.price) }}</td>
+                        <td>{{ money(product.sale_price) }}</td>
+                        <td>{{ product.stock }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

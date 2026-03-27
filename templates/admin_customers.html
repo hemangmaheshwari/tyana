@@ -1,0 +1,40 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Customers | Tyana Jewels{% endblock %}
+
+{% block content %}
+<section class="admin-page">
+    {% set title = "Customers" %}
+    {% include "_admin_nav.html" %}
+    <div class="admin-table-wrap admin-panel">
+        {% if customers %}
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>City</th>
+                        <th>Orders</th>
+                        <th>Total Spent</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for customer in customers %}
+                        <tr>
+                            <td>{{ customer.name }}</td>
+                            <td>{{ customer.email }}</td>
+                            <td>{{ customer.phone }}</td>
+                            <td>{{ customer.city }}</td>
+                            <td>{{ customer.orders }}</td>
+                            <td>{{ money(customer.spent) }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="empty-state">Customer records will appear here after the first order is placed.</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
