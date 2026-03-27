@@ -233,10 +233,10 @@ POLICY_PAGES = {
 
 def get_logo_path() -> Optional[str]:
     static_root = app.static_folder or ""
-    for relative_path in ["images/logo.png", "images/logo.svg"]:
-        absolute_path = os.path.join(static_root, *relative_path.split("/"))
-        if os.path.exists(absolute_path):
-            return relative_path
+    relative_path = "images/Tyana Logo.png"
+    absolute_path = os.path.join(static_root, *relative_path.split("/"))
+    if os.path.exists(absolute_path):
+        return relative_path
     return None
 
 
